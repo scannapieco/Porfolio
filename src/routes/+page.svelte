@@ -21,9 +21,9 @@
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    service_id: 'your_service_id',
-                    template_id: 'your_template_id',
-                    user_id: 'your_user_id',
+                    service_id: 'your_service_id',      // Reemplaza con tu service_id real
+                    template_id: 'your_template_id',    // Reemplaza con tu template_id real
+                    user_id: 'your_user_id',            // Reemplaza con tu user_id real
                     template_params: formData,
                 }),
             });
@@ -34,12 +34,15 @@
                 email = '';
                 message = '';
             } else {
+                isSent = false;
                 console.log('Failed to send email');
             }
         } catch (error) {
+            isSent = false;
             console.error('Error sending email:', error);
         }
     };
+
 </script>
 
 <!-- svelte-ignore css_unused_selector -->
@@ -203,27 +206,29 @@
         </a>
       </div>
 
-     <!-- Proyecto: WeatherAppReact -->
-<div class="bg-gray-100 dark:bg-gray-800 rounded-2xl p-6 shadow-md hover:shadow-lg transition">
-  <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-2">WeatherAppReact</h3>
-  <div class="mb-4">
-    <img src="https://raw.githubusercontent.com/scannapieco/weatherappreact/main/public/weatherapp-preview.png" alt="WeatherAppReact preview" class="w-full h-48 object-cover rounded-lg mb-2" />
-  </div>
-  <p class="text-gray-700 dark:text-gray-300 mb-4">
-    WeatherAppReact es una aplicación web que muestra información meteorológica actualizada de cualquier ciudad del mundo. Permite buscar ciudades y ver detalles como temperatura, humedad y condiciones del clima, utilizando la API de OpenWeatherMap.
-  </p>
-  <div class="flex flex-wrap gap-2 mb-4 justify-center">
-    <span class="bg-blue-200 text-blue-800 px-2 py-1 rounded text-xs">React</span>
-    <span class="bg-blue-100 text-blue-900 px-2 py-1 rounded text-xs">JavaScript</span>
-    <span class="bg-cyan-200 text-cyan-800 px-2 py-1 rounded text-xs">CSS</span>
-    <span class="bg-gray-200 text-gray-800 px-2 py-1 rounded text-xs">OpenWeatherMap API</span>
-  </div>
-  <a href="https://github.com/scannapieco/weatherappreact" target="_blank" class="inline-flex items-center justify-center w-12 h-12 bg-black rounded-full hover:bg-gray-800 transition" aria-label="View on GitHub">
-    <Icon icon="mdi:github" class="w-7 h-7 text-white" />
-  </a>
-</div>
-
-
+                       <div class="bg-gray-100 dark:bg-gray-800 rounded-2xl p-6 shadow-md hover:shadow-lg transition flex flex-col h-full">
+                  <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-2">WeatherAppReact</h3>
+                  <div class="mb-4">
+                    <img src="/weatherapp-preview.png" alt="WeatherAppReact preview" class="w-full h-48 object-cover rounded-lg mb-2" />
+                  </div>
+                  <p class="text-gray-700 dark:text-gray-300 mb-4">
+                    WeatherAppReact es una aplicación web que muestra información meteorológica actualizada de cualquier ciudad del mundo. Permite buscar ciudades y ver detalles como temperatura, humedad y condiciones del clima, utilizando la API de OpenWeatherMap.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-4 justify-center">
+                    <span class="bg-blue-200 text-blue-800 px-2 py-1 rounded text-xs">React</span>
+                    <span class="bg-blue-100 text-blue-900 px-2 py-1 rounded text-xs">JavaScript</span>
+                    <span class="bg-cyan-200 text-cyan-800 px-2 py-1 rounded text-xs">CSS</span>
+                    <span class="bg-gray-200 text-gray-800 px-2 py-1 rounded text-xs">OpenWeatherMap API</span>
+                  </div>
+                  <div class="flex flex-col items-center mt-auto gap-2">
+                    <a href="https://github.com/scannapieco/weatherappreact" target="_blank" class="inline-flex items-center justify-center w-12 h-12 bg-black rounded-full hover:bg-gray-800 transition mb-2" aria-label="Ver en GitHub">
+                      <Icon icon="mdi:github" class="w-7 h-7 text-white" />
+                    </a>
+                    <a href="https://tiempapp.netlify.app/" target="_blank" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition">
+                      Ver Demo
+                    </a>
+                  </div>
+                </div>
 <!-- Proyecto: Research Imagen -->
 <div class="bg-gray-100 dark:bg-gray-800 rounded-2xl p-6 shadow-md hover:shadow-lg transition">
   <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-2">Research Imagen</h3>
@@ -286,13 +291,15 @@
         { icon: 'logos:git-icon', label: 'Git' },
         { icon: 'logos:flutter', label: 'Flutter' }
       ] as tech, i}
-        <div
-          class="flex flex-col items-center transition-transform duration-300 transform hover:scale-110"
-          in:fly={{ y: 20, duration: 500, delay: i * 100 }}
-        >
-          <Icon icon={tech.icon} class="w-12 h-12" aria-label={tech.label} />
-          <span class="mt-2 text-sm text-black">{tech.label}</span>
-        </div>
+        {#if tech && tech.icon && tech.label}
+          <div
+            class="flex flex-col items-center transition-transform duration-300 transform hover:scale-110"
+            in:fly={{ y: 20, duration: 500, delay: i * 100 }}
+          >
+            <Icon icon={tech.icon} class="w-12 h-12" aria-label={tech.label} />
+            <span class="mt-2 text-sm text-black">{tech.label}</span>
+          </div>
+        {/if}
       {/each}
     </div>
 </section>
